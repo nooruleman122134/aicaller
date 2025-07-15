@@ -1,12 +1,12 @@
 from firebase.firebase_utils import get_realtime_status
-import pyttsx3
+#import pyttsx3
 import threading  # ✅ Add this
 
 def speak(message):
-    engine = pyttsx3.init()
-    engine.setProperty('rate', 140)
-    engine.say(message)
-    engine.runAndWait()
+    #engine = pyttsx3.init()
+    #engine.setProperty('rate', 140)
+    #.say(message)
+   # engine.runAndWait()
 
 def play_ride_voice():
     data = get_realtime_status(1)
