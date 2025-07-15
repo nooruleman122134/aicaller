@@ -62,7 +62,8 @@ def voice():
     resp.say(message, voice='alice', language='ur-PK')
     return str(resp)
 
-# ⚠️ Vercel requires this WSGI handler
+# For Vercel WSGI compatibility
 def handler(environ, start_response):
-    return app(environ, start_response)
-handler = app
+    return app.wsgi_app(environ, start_response)
+
+app = handler
