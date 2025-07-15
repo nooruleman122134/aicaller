@@ -1,6 +1,9 @@
 Flask==2.3.2
+flask_sqlalchemy
 python-dotenv
 firebase-admin
 psycopg2-binary
 twilio
 gunicorn
+
+
