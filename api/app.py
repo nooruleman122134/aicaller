@@ -65,3 +65,4 @@ def voice():
 # ⚠️ Vercel requires this WSGI handler
 def handler(environ, start_response):
     return app(environ, start_response)
+handler = app
