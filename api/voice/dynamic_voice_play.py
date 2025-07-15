@@ -1,14 +1,8 @@
-import sys
-import os
-
-# Add the parent directory of 'api' to sys.path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-
-from api.firebase.firebase_utils import get_realtime_status
 import threading
+from api.firebase.firebase_utils import get_realtime_status
 
 def speak(message):
-    print(f"🎤 Speaking: {message}")
+    print(f"🔊 Speaking: {message}")  # Replace with pyttsx3 if needed
 
 def play_ride_voice():
     data = get_realtime_status(1)
@@ -18,13 +12,13 @@ def play_ride_voice():
     message = "Welcome to WeRide."
 
     if status == "arrived":
-        message = "Your driver has arrived. Please confirm the vehicle before boarding."
+        message = "Your driver has arrived."
     elif status == "cancelled":
-        message = "Your ride has been cancelled. Please book again."
+        message = "Your ride has been cancelled."
     elif status == "completed":
-        message = "Thank you for riding with WeRide. We hope you had a smooth trip."
+        message = "Thank you for riding with WeRide."
     elif issue == "suspicious_noise":
-        message = "We have detected a possible issue. Press 1 if you're safe, or 2 if you need help."
+        message = "Possible issue detected. Press 1 if safe."
 
     t = threading.Thread(target=speak, args=(message,))
     t.start()
