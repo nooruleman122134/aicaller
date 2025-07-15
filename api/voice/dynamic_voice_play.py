@@ -1,12 +1,14 @@
-from firebase.firebase_utils import get_realtime_status
-#import pyttsx3
-import threading  # ✅ Add this
+import sys
+import os
+
+# Add the parent directory of 'api' to sys.path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+
+from api.firebase.firebase_utils import get_realtime_status
+import threading
 
 def speak(message):
-    #engine = pyttsx3.init()
-    #engine.setProperty('rate', 140)
-    #.say(message)
-   # engine.runAndWait()
+    print(f"🎤 Speaking: {message}")
 
 def play_ride_voice():
     data = get_realtime_status(1)
@@ -24,6 +26,5 @@ def play_ride_voice():
     elif issue == "suspicious_noise":
         message = "We have detected a possible issue. Press 1 if you're safe, or 2 if you need help."
 
-    # ✅ Run voice in a new thread
     t = threading.Thread(target=speak, args=(message,))
     t.start()
